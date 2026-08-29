@@ -1,0 +1,12 @@
+{
+  "domain": "algopattern",
+  "name": "AlgoPattern",
+  "codeowners": ["@lfavole"],
+  "config_flow": true,
+  "documentation": "https://github.com/lfavole/ha-algopattern",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/lfavole/ha-algopattern/issues",
+  "requirements": ["aiohttp>=3.8.1"],
+  "version": "1.1.0"
+}

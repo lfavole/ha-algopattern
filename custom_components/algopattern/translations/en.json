@@ -1,0 +1,92 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to AlgoPattern",
+        "description": "Enter your AlgoPattern email and password.",
+        "data": {
+          "email": "Email Address",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to AlgoPattern server backend. Please check your internet connection.",
+      "invalid_auth": "Invalid email or password credentials.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This AlgoPattern account is already configured in Home Assistant."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "streak_length": {
+        "name": "Streak Length"
+      },
+      "xp": {
+        "name": "Total XP"
+      },
+      "freezes_available": {
+        "name": "Streak Freezes Available"
+      },
+      "total_active_days": {
+        "name": "Total Active Days"
+      },
+      "last_active_date": {
+        "name": "Last Active Date"
+      },
+      "quizzes_completed": {
+        "name": "Quizzes Completed"
+      },
+      "user_id": {
+        "name": "User ID"
+      },
+      "name": {
+        "name": "User Name"
+      }
+    },
+    "binary_sensor": {
+      "completed_today": {
+        "name": "Daily Challenge Completed"
+      },
+      "active_today": {
+        "name": "Active Today"
+      },
+      "is_pro": {
+        "name": "PRO Account"
+      }
+    },
+    "switch": {
+      "daily_reminder_enabled": {
+        "name": "Daily Reminder Enabled"
+      },
+      "immediate_quiz_feedback": {
+        "name": "Immediate Quiz Feedback"
+      }
+    },
+    "select": {
+      "experience_level": {
+        "name": "Experience Level",
+        "state": {
+          "Beginner": "Beginner",
+          "Intermediate": "Intermediate",
+          "Advanced": "Advanced"
+        }
+      },
+      "preparation_goal": {
+        "name": "Preparation Goal",
+        "state": {
+          "Tech Interview Prep": "Tech Interview Prep",
+          "Competitive Programming": "Competitive Programming",
+          "General Improvement": "General Improvement"
+        }
+      }
+    },
+    "time": {
+      "daily_reminder_time": {
+        "name": "Daily Reminder Time"
+      }
+    }
+  }
+}
