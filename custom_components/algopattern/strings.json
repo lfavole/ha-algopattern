@@ -27,6 +27,9 @@
       "xp": {
         "name": "Total XP"
       },
+      "daily_quiz_questions_completed": {
+        "name": "Daily Quiz Questions Completed"
+      },
       "freezes_available": {
         "name": "Streak Freezes Available"
       },
@@ -52,9 +55,6 @@
       },
       "active_today": {
         "name": "Active Today"
-      },
-      "is_pro": {
-        "name": "PRO Account"
       }
     },
     "switch": {
@@ -63,24 +63,6 @@
       },
       "immediate_quiz_feedback": {
         "name": "Immediate Quiz Feedback"
-      }
-    },
-    "select": {
-      "experience_level": {
-        "name": "Experience Level",
-        "state": {
-          "Beginner": "Beginner",
-          "Intermediate": "Intermediate",
-          "Advanced": "Advanced"
-        }
-      },
-      "preparation_goal": {
-        "name": "Preparation Goal",
-        "state": {
-          "Tech Interview Prep": "Tech Interview Prep",
-          "Competitive Programming": "Competitive Programming",
-          "General Improvement": "General Improvement"
-        }
       }
     },
     "time": {

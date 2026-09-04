@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-import time
 from typing import Any
 
 import aiohttp
@@ -207,7 +206,7 @@ class AlgoPatternApiClient:
             "user_id": user_id,
             "access_token": access_token,
             "xp": streak_data.get("xp", profile_data.get("xp", 0)),
-            "is_pro": bool(profile_data.get("is_pro", False)),
+            "daily_quiz_questions_completed": int(streak_data.get("daily_quiz_questions_completed", 0)),
             "streak_length": int(streak_data.get("streak_length", 0)),
             "active_today": bool(streak_data.get("active_today", False)),
             "completed_today": bool(streak_data.get("completed_today", False)),
@@ -216,8 +215,6 @@ class AlgoPatternApiClient:
             "active_days_count": active_days_count,
             "last_active_date": last_active_date,
             "daily_quiz_day": int(profile_data.get("daily_quiz_day", 0)),
-            "experience_level": prefs_data.get("experience_level", "Intermediate"),
-            "preparation_goal": prefs_data.get("preparation_goal", "Tech Interview Prep"),
             "daily_reminder_time": prefs_data.get("daily_reminder_time", "17:00"),
             "daily_reminder_enabled": bool(prefs_data.get("daily_reminder_enabled", False)),
             "immediate_quiz_feedback": bool(prefs_data.get("immediate_quiz_feedback", False)),

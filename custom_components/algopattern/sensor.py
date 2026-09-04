@@ -19,6 +19,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import (
     DOMAIN,
+    SENSOR_DAILY_QUIZ_QUESTIONS_COMPLETED,
     SENSOR_FREEZES_AVAILABLE,
     SENSOR_LAST_ACTIVE_DATE,
     SENSOR_QUIZZES_COMPLETED,
@@ -72,9 +73,18 @@ SENSOR_DESCRIPTIONS: tuple[AlgoPatternSensorEntityDescription, ...] = (
         entity_registry_enabled_default=True,
         value_fn=lambda data: data.get("xp", 0),
         extra_attrs_fn=lambda data: {
-            "is_pro": data.get("is_pro", False),
             "daily_quiz_day": data.get("daily_quiz_day", 0),
         },
+    ),
+    AlgoPatternSensorEntityDescription(
+        key=SENSOR_DAILY_QUIZ_QUESTIONS_COMPLETED,
+        translation_key=SENSOR_DAILY_QUIZ_QUESTIONS_COMPLETED,
+        name="Daily Quiz Questions Completed",
+        icon="mdi:help-box-multiple",
+        native_unit_of_measurement="questions",
+        state_class=SensorStateClass.TOTAL,
+        entity_registry_enabled_default=True,
+        value_fn=lambda data: data.get("daily_quiz_questions_completed", 0),
     ),
     AlgoPatternSensorEntityDescription(
         key=SENSOR_FREEZES_AVAILABLE,

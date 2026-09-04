@@ -25,7 +25,10 @@
         "name": "Longueur de la s\u00e9rie"
       },
       "xp": {
-        "name": "XP Total"
+        "name": "XP total"
+      },
+      "daily_quiz_questions_completed": {
+        "name": "Questions du quiz quotidien effectu\u00e9es"
       },
       "freezes_available": {
         "name": "Gels de s\u00e9rie disponibles"
@@ -40,7 +43,7 @@
         "name": "Quiz compl\u00e9t\u00e9s"
       },
       "user_id": {
-        "name": "ID Utilisateur"
+        "name": "ID utilisateur"
       },
       "name": {
         "name": "Nom d'utilisateur"
@@ -52,9 +55,6 @@
       },
       "active_today": {
         "name": "Actif aujourd'hui"
-      },
-      "is_pro": {
-        "name": "Compte PRO"
       }
     },
     "switch": {
@@ -62,25 +62,7 @@
         "name": "Rappel quotidien activ\u00e9"
       },
       "immediate_quiz_feedback": {
-        "name": "Retour imm\u00e9diat au quiz"
-      }
-    },
-    "select": {
-      "experience_level": {
-        "name": "Niveau d'exp\u00e9rience",
-        "state": {
-          "Beginner": "D\u00e9butant",
-          "Intermediate": "Interm\u00e9diaire",
-          "Advanced": "Avanc\u00e9"
-        }
-      },
-      "preparation_goal": {
-        "name": "Objectif de pr\u00e9paration",
-        "state": {
-          "Tech Interview Prep": "Pr\u00e9paration aux entretiens techniques",
-          "Competitive Programming": "Programmation comp\u00e9titive",
-          "General Improvement": "Am\u00e9lioration g\u00e9n\u00e9rale"
-        }
+        "name": "Réponse imm\u00e9diate dans les quiz"
       }
     },
     "time": {

@@ -19,7 +19,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from .const import (
     BINARY_SENSOR_ACTIVE_TODAY,
     BINARY_SENSOR_COMPLETED_TODAY,
-    BINARY_SENSOR_IS_PRO,
     DOMAIN,
 )
 from .coordinator import AlgoPatternDataUpdateCoordinator
@@ -52,16 +51,6 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[AlgoPatternBinarySensorEntityDescription, ...]
         icon="mdi:calendar-today",
         entity_registry_enabled_default=True,
         is_on_fn=lambda data: bool(data.get("active_today", False)),
-    ),
-    # --- DIAGNOSTIC & CONFIGURATION BINARY SENSORS (AVAILABLE, DISABLED BY DEFAULT) ---
-    AlgoPatternBinarySensorEntityDescription(
-        key=BINARY_SENSOR_IS_PRO,
-        translation_key=BINARY_SENSOR_IS_PRO,
-        name="PRO Account",
-        icon="mdi:crown",
-        entity_category=EntityCategory.DIAGNOSTIC,
-        entity_registry_enabled_default=False,
-        is_on_fn=lambda data: bool(data.get("is_pro", False)),
     ),
 )
 
