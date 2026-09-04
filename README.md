@@ -1,5 +1,7 @@
 # AlgoPattern Home Assistant Integration
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=lfavole&repository=ha-algopattern&category=integration)
+
 Unofficial Home Assistant custom component integration for **AlgoPattern** — the coding interview algorithmic pattern recognition trainer.
 
 ![AlgoPattern Logo](custom_components/algopattern/brand/logo.png)
