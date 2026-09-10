@@ -29,7 +29,8 @@ SENSOR_LAST_ACTIVE_DATE = "last_active_date"
 SENSOR_QUIZZES_COMPLETED = "quizzes_completed"
 SENSOR_DAILY_REMINDER_TIME = "daily_reminder_time"
 SENSOR_USER_ID = "user_id"
-SENSOR_USER_NAME = "name"
+SENSOR_NAME = "name"
+SENSOR_USERNAME = "username"
 
 # Binary Sensor Keys
 BINARY_SENSOR_COMPLETED_TODAY = "completed_today"

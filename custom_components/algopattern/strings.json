@@ -46,7 +46,10 @@
         "name": "User ID"
       },
       "name": {
-        "name": "User Name"
+        "name": "Name"
+      },
+      "username": {
+        "name": "Username"
       }
     },
     "binary_sensor": {

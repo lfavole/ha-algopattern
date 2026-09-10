@@ -192,18 +192,9 @@ class AlgoPatternApiClient:
         last_active_date = active_dates[-1] if active_dates else "None"
 
         # Combine all fields into a single comprehensive data dictionary
-
-        # Extract user name from one of the responses
-        user_name = (
-            profile_data.get("name") or profile_data.get("full_name") or
-            prefs_data.get("name") or prefs_data.get("full_name") or
-            streak_data.get("name") or streak_data.get("full_name") or
-            "AlgoPattern User"
-        )
-
         return {
-            "name": user_name,
             "user_id": user_id,
+            "username": streak_data.get("username", ""),
             "access_token": access_token,
             "xp": streak_data.get("xp", profile_data.get("xp", 0)),
             "daily_quiz_questions_completed": int(streak_data.get("daily_quiz_questions_completed", 0)),

@@ -22,11 +22,12 @@ from .const import (
     SENSOR_DAILY_QUIZ_QUESTIONS_COMPLETED,
     SENSOR_FREEZES_AVAILABLE,
     SENSOR_LAST_ACTIVE_DATE,
+    SENSOR_NAME,
     SENSOR_QUIZZES_COMPLETED,
     SENSOR_STREAK_LENGTH,
     SENSOR_TOTAL_ACTIVE_DAYS,
     SENSOR_USER_ID,
-    SENSOR_USER_NAME,
+    SENSOR_USERNAME,
     SENSOR_XP,
 )
 from .coordinator import AlgoPatternDataUpdateCoordinator
@@ -138,12 +139,21 @@ SENSOR_DESCRIPTIONS: tuple[AlgoPatternSensorEntityDescription, ...] = (
         value_fn=lambda data: data.get("user_id", ""),
     ),
     AlgoPatternSensorEntityDescription(
-        key=SENSOR_USER_NAME,
-        translation_key=SENSOR_USER_NAME,
-        name="User Name",
+        key=SENSOR_NAME,
+        translation_key=SENSOR_NAME,
+        name="Name",
         icon="mdi:account",
         entity_category=EntityCategory.DIAGNOSTIC,
         value_fn=lambda data: data.get("name", ""),
+    ),
+    AlgoPatternSensorEntityDescription(
+        key=SENSOR_USERNAME,
+        translation_key=SENSOR_USERNAME,
+        name="Username",
+        icon="mdi:card-account-details",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
+        value_fn=lambda data: data.get("username", ""),
     ),
 )
 
