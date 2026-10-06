@@ -43,14 +43,6 @@ async def validate_email_credentials(
     return resp
 
 
-async def validate_anonymous_signup(hass: HomeAssistant) -> dict[str, Any]:
-    """Validate creating a fresh anonymous guest session on AlgoPattern server."""
-    session = async_get_clientsession(hass)
-    client = AlgoPatternApiClient(session)
-    resp = await client.async_sign_up_anonymous()
-    return resp
-
-
 class AlgoPatternConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for AlgoPattern."""
 
