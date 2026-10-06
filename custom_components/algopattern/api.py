@@ -147,6 +147,26 @@ class AlgoPatternApiClient:
             access_token=access_token,
         )
 
+    async def async_get_weekly_leaderboard(self, access_token: str) -> dict[str, Any]:
+        """Fetch this week XP leaderboard from AlgoPattern server RPC."""
+        res = await self._request(
+            "POST",
+            "/rest/v1/rpc/get_weekly_xp_leaderboard",
+            data={},
+            access_token=access_token,
+        )
+        return res or {"me": None, "entries": []}
+
+    async def async_get_all_time_leaderboard(self, access_token: str) -> dict[str, Any]:
+        """Fetch all-time XP leaderboard from AlgoPattern server RPC."""
+        res = await self._request(
+            "POST",
+            "/rest/v1/rpc/get_xp_leaderboard",
+            data={},
+            access_token=access_token,
+        )
+        return res or {"me": None, "entries": []}
+
     # -------------------------------------------------------------
     # Aggregated Account Data
     # -------------------------------------------------------------
@@ -186,6 +206,45 @@ class AlgoPatternApiClient:
         except Exception as ex:
             _LOGGER.debug("Could not fetch preferences: %s", ex)
 
+        # 4. Fetch Leaderboards (Weekly & All-Time Ranks)
+        weekly_rank: int | None = None
+        weekly_xp: int | None = None
+        weekly_week_start: str | None = None
+        try:
+            weekly_lb = await self.async_get_weekly_leaderboard(access_token)
+            if isinstance(weekly_lb, dict):
+                weekly_week_start = weekly_lb.get("week_start")
+                me = weekly_lb.get("me")
+                if isinstance(me, dict) and me.get("rank") is not None:
+                    weekly_rank = int(me["rank"])
+                    weekly_xp = int(me.get("xp", 0))
+                elif "entries" in weekly_lb and isinstance(weekly_lb["entries"], list):
+                    for entry in weekly_lb["entries"]:
+                        if entry.get("user_id") == user_id and entry.get("rank") is not None:
+                            weekly_rank = int(entry["rank"])
+                            weekly_xp = int(entry.get("xp", 0))
+                            break
+        except Exception as ex:
+            _LOGGER.debug("Could not fetch weekly leaderboard: %s", ex)
+
+        all_time_rank: int | None = None
+        all_time_xp: int | None = None
+        try:
+            all_time_lb = await self.async_get_all_time_leaderboard(access_token)
+            if isinstance(all_time_lb, dict):
+                me = all_time_lb.get("me")
+                if isinstance(me, dict) and me.get("rank") is not None:
+                    all_time_rank = int(me["rank"])
+                    all_time_xp = int(me.get("xp", 0))
+                elif "entries" in all_time_lb and isinstance(all_time_lb["entries"], list):
+                    for entry in all_time_lb["entries"]:
+                        if entry.get("user_id") == user_id and entry.get("rank") is not None:
+                            all_time_rank = int(entry["rank"])
+                            all_time_xp = int(entry.get("xp", 0))
+                            break
+        except Exception as ex:
+            _LOGGER.debug("Could not fetch all-time leaderboard: %s", ex)
+
         # Calculate active dates summary
         active_dates = streak_data.get("active_dates", [])
         active_days_count = len(active_dates)
@@ -209,4 +268,9 @@ class AlgoPatternApiClient:
             "daily_reminder_time": prefs_data.get("daily_reminder_time", "17:00"),
             "daily_reminder_enabled": bool(prefs_data.get("daily_reminder_enabled", False)),
             "immediate_quiz_feedback": bool(prefs_data.get("immediate_quiz_feedback", False)),
+            "weekly_leaderboard_rank": weekly_rank,
+            "weekly_leaderboard_xp": weekly_xp,
+            "weekly_leaderboard_week_start": weekly_week_start,
+            "all_time_leaderboard_rank": all_time_rank,
+            "all_time_leaderboard_xp": all_time_xp,
         }

@@ -56,6 +56,8 @@ custom_components/algopattern/
 | `sensor.algopattern_streak_length` | Streak Length | **Enabled** | Primary | Current practice streak in days (with `active_dates` attributes). |
 | `sensor.algopattern_total_xp` | Total XP | **Enabled** | Primary | Total cumulative algorithmic XP. |
 | `sensor.algopattern_streak_freezes_available` | Streak Freezes | **Enabled** | Primary | Available streak freeze protection shields. |
+| `sensor.algopattern_this_week_leaderboard_rank` | This Week Leaderboard Rank | **Enabled** | Primary | Current weekly XP leaderboard ranking position (number). |
+| `sensor.algopattern_all_time_leaderboard_rank` | All-Time Leaderboard Rank | **Enabled** | Primary | All-time XP leaderboard ranking position (number). |
 | `sensor.algopattern_total_active_days` | Total Active Days | Disabled | Diagnostic | Historical count of active drill days. |
 | `sensor.algopattern_last_active_date` | Last Active Date | Disabled | Diagnostic | Date of last logged pattern drill. |
 | `sensor.algopattern_quizzes_completed` | Quizzes Completed | Disabled | Diagnostic | Total daily challenge drills finished. |

@@ -50,6 +50,12 @@
       },
       "username": {
         "name": "Nom d'utilisateur"
+      },
+      "weekly_leaderboard_rank": {
+        "name": "Rang au classement de la semaine"
+      },
+      "all_time_leaderboard_rank": {
+        "name": "Rang au classement général"
       }
     },
     "binary_sensor": {

@@ -19,6 +19,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import (
     DOMAIN,
+    SENSOR_ALL_TIME_LEADERBOARD_RANK,
     SENSOR_DAILY_QUIZ_QUESTIONS_COMPLETED,
     SENSOR_FREEZES_AVAILABLE,
     SENSOR_LAST_ACTIVE_DATE,
@@ -28,6 +29,7 @@ from .const import (
     SENSOR_TOTAL_ACTIVE_DAYS,
     SENSOR_USER_ID,
     SENSOR_USERNAME,
+    SENSOR_WEEKLY_LEADERBOARD_RANK,
     SENSOR_XP,
 )
 from .coordinator import AlgoPatternDataUpdateCoordinator
@@ -86,6 +88,31 @@ SENSOR_DESCRIPTIONS: tuple[AlgoPatternSensorEntityDescription, ...] = (
         state_class=SensorStateClass.TOTAL,
         entity_registry_enabled_default=True,
         value_fn=lambda data: data.get("daily_quiz_questions_completed", 0),
+    ),
+    AlgoPatternSensorEntityDescription(
+        key=SENSOR_WEEKLY_LEADERBOARD_RANK,
+        translation_key=SENSOR_WEEKLY_LEADERBOARD_RANK,
+        name="This Week Leaderboard Rank",
+        icon="mdi:podium-gold",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_registry_enabled_default=True,
+        value_fn=lambda data: data.get("weekly_leaderboard_rank"),
+        extra_attrs_fn=lambda data: {
+            "weekly_xp": data.get("weekly_leaderboard_xp"),
+            "week_start": data.get("weekly_leaderboard_week_start"),
+        } if data.get("weekly_leaderboard_rank") is not None else {},
+    ),
+    AlgoPatternSensorEntityDescription(
+        key=SENSOR_ALL_TIME_LEADERBOARD_RANK,
+        translation_key=SENSOR_ALL_TIME_LEADERBOARD_RANK,
+        name="All-Time Leaderboard Rank",
+        icon="mdi:trophy-award",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_registry_enabled_default=True,
+        value_fn=lambda data: data.get("all_time_leaderboard_rank"),
+        extra_attrs_fn=lambda data: {
+            "all_time_xp": data.get("all_time_leaderboard_xp"),
+        } if data.get("all_time_leaderboard_rank") is not None else {},
     ),
     AlgoPatternSensorEntityDescription(
         key=SENSOR_FREEZES_AVAILABLE,

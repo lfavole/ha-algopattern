@@ -37,3 +37,6 @@ BINARY_SENSOR_COMPLETED_TODAY = "completed_today"
 BINARY_SENSOR_ACTIVE_TODAY = "active_today"
 BINARY_SENSOR_DAILY_REMINDER_ENABLED = "daily_reminder_enabled"
 BINARY_SENSOR_IMMEDIATE_FEEDBACK = "immediate_quiz_feedback"
+
+SENSOR_WEEKLY_LEADERBOARD_RANK = "weekly_leaderboard_rank"
+SENSOR_ALL_TIME_LEADERBOARD_RANK = "all_time_leaderboard_rank"
