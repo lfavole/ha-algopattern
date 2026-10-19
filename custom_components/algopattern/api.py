@@ -177,13 +177,18 @@ class AlgoPatternApiClient:
         """Fetch consolidated account statistics, streak, preferences, and settings."""
         # 1. Fetch Streak Status
         streak_data: dict[str, Any] = {}
+        refresh_response: dict[str, Any] | None = None
         try:
             streak_data = await self.async_get_streak_status(user_id, access_token)
         except AlgoPatternAuthError:
             # Token might be expired; attempt refresh if refresh_token available
             if refresh_token:
                 refreshed = await self.async_refresh_token(refresh_token)
+                refresh_response = refreshed
                 new_token = refreshed.get("access_token")
+                new_refresh_token = refreshed.get("refresh_token")
+                if new_refresh_token:
+                    refresh_token = new_refresh_token
                 if new_token:
                     access_token = new_token
                     streak_data = await self.async_get_streak_status(user_id, access_token)
@@ -255,6 +260,8 @@ class AlgoPatternApiClient:
             "user_id": user_id,
             "username": streak_data.get("username", ""),
             "access_token": access_token,
+            "refresh_token": refresh_token,
+            "refresh_response": refresh_response,
             "xp": streak_data.get("xp", profile_data.get("xp", 0)),
             "daily_quiz_questions_completed": int(streak_data.get("daily_quiz_questions_completed", 0)),
             "streak_length": int(streak_data.get("streak_length", 0)),

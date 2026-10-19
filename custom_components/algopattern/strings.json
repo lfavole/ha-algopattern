@@ -8,6 +8,13 @@
           "email": "Email Address",
           "password": "Password"
         }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate with AlgoPattern",
+        "description": "Please enter the password for {email}.",
+        "data": {
+          "password": "Password"
+        }
       }
     },
     "error": {
@@ -16,7 +23,8 @@
       "unknown": "An unexpected error occurred."
     },
     "abort": {
-      "already_configured": "This AlgoPattern account is already configured in Home Assistant."
+      "already_configured": "This AlgoPattern account is already configured in Home Assistant.",
+      "reauth_successful": "Re-authentication was successful."
     }
   },
   "entity": {

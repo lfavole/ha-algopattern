@@ -55,17 +55,31 @@ class AlgoPatternDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 access_token=self.access_token,
                 refresh_token=self.refresh_token,
             )
+
             # Ensure name from config entry is used if API didn't fetch one
             if not data.get("name") or data.get("name") == "AlgoPattern User":
                 data["name"] = self.config_entry.data.get("name", "AlgoPattern User")
-            # Update access token if refreshed
+
+            # Update access and refresh tokens if refreshed
             new_token = data.get("access_token")
+            new_refresh_token = data.get("refresh_token")
+            if not new_refresh_token and data.get("refresh_response"):
+                new_refresh_token = data["refresh_response"].get("refresh_token")
+
+            updated_data: dict[str, Any] = {}
             if new_token and new_token != self.access_token:
                 self.access_token = new_token
+                updated_data[CONF_ACCESS_TOKEN] = new_token
+            if new_refresh_token and new_refresh_token != self.refresh_token:
+                self.refresh_token = new_refresh_token
+                updated_data[CONF_REFRESH_TOKEN] = new_refresh_token
+
+            if updated_data:
                 self.hass.config_entries.async_update_entry(
                     self.config_entry,
-                    data={**self.config_entry.data, CONF_ACCESS_TOKEN: new_token},
+                    data={**self.config_entry.data, **updated_data},
                 )
+
             return data
         except AlgoPatternAuthError as err:
             _LOGGER.warning("Authentication failed during coordinator update: %s", err)
