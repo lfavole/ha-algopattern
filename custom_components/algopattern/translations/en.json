@@ -3,9 +3,16 @@
     "step": {
       "user": {
         "title": "Connect to AlgoPattern",
-        "description": "Enter your AlgoPattern email and password.",
+        "description": "Enter your AlgoPattern email and password to connect your account for coding interview streak and XP tracking.",
         "data": {
           "email": "Email Address",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate with AlgoPattern",
+        "description": "Please enter the password for {email}.",
+        "data": {
           "password": "Password"
         }
       }
@@ -16,7 +23,8 @@
       "unknown": "An unexpected error occurred."
     },
     "abort": {
-      "already_configured": "This AlgoPattern account is already configured in Home Assistant."
+      "already_configured": "This AlgoPattern account is already configured in Home Assistant.",
+      "reauth_successful": "Re-authentication was successful."
     }
   },
   "entity": {
